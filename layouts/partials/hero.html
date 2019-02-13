@@ -1,19 +1,41 @@
 {{ "<!-- HEADER -->" | safeHTML }}
-<header>
+<header style="background-image:url({{ .Site.BaseURL }}background/{{ index (shuffle .Site.Params.hero.backgrounds) 0 }})">
     <div class="header-content">
         <div class="header-content-inner">
-            {{ with .Site.Params.hero.slogan }}
-                <h1>{{ . | markdownify  }}</h1>
-            {{ end }}
-            {{ if and .Site.Params.hero.slogan .Site.Params.hero.subtitle }}
+            {{ if .Page.IsHome }}
+                {{ with .Site.Params.hero.slogan }}
+                    <h1>{{ . | markdownify  }}</h1>
+                {{ end }}
+                {{ if and .Site.Params.hero.slogan .Site.Params.hero.subtitle }}
+                    <hr>
+                {{ end }}
+                {{ with .Site.Params.hero.subtitle }}
+                    <p>{{ . | markdownify }}</p>
+                {{ end }}
+                {{ with .Site.Params.hero.buttonText }}
+                    <a href="#about" class="btn btn-primary btn-xl page-scroll">{{ . }}</a>
+                {{ end }}
+            {{ else }}
+                {{ with .Page.Title }}
+                    <h1>{{ . | markdownify  }}</h1>
+                {{ end }}
                 <hr>
+                <div class="text-center">
+                    <ul class="list-inline item-details">
+                    {{ if .Params.date }}
+                        <li>
+                            <strong>{{ .Params.date | dateFormat "Monday,  Jan 2,  2006" }}</strong>
+                        </li>
+                    {{ end }}
+                    {{ if .Params.category }}
+                        <li>Category: 
+                            <strong>{{ .Params.category }}</strong>
+                        </li>
+                    {{ end }}
+                    </ul>
+                </div>
             {{ end }}
-            {{ with .Site.Params.hero.subtitle }}
-                <p>{{ . | markdownify }}</p>
-            {{ end }}
-            {{ with .Site.Params.hero.buttonText }}
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">{{ . }}</a>
-            {{ end }}
+
         </div>
     </div>
 </header>

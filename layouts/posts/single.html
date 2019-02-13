@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}" dir="ltr">
+
+<head>
+    {{ partial "head.html" }}
+
+    <link rel="stylesheet" href="{{ "css/post.css" | absURL }}" type="text/css">
+
+</head>
+
+<body>
+
+    {{ partial "nav.html" . }}
+
+    {{ partial "hero.html" . }}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <article class="post-body">
+
+                    {{ with .Content }}
+                        {{ . | markdownify }}
+                    {{ end }}
+
+                    <div class="text-center">
+                        <a type="button" href="{{ .Site.BaseURL }}" class="back-button btn btn-default" role="button">back</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    {{ partial "footer.html" }}
+
+    {{ partial "js.html" . }}
+    
+</body>
+
+</html>
