@@ -9,3 +9,11 @@
 	font-size: 20px;
 	background-color: #fafafa;
 }
+
+.list-item {
+	font-size: 18px;
+	line-height: 2em;
+}
+
+.list-item-title {
+}

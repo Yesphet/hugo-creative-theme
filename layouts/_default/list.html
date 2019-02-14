@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}" dir="ltr">
+
+<head>
+    {{ partial "head.html" . }}
+
+    <link rel="stylesheet" href="{{ "css/post.css" | absURL }}" type="text/css">
+
+</head>
+
+<body>
+
+    {{ partial "nav.html" . }}
+
+    {{ partial "header.html" . }}
+
+    <section class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+
+                {{ range .Pages.GroupByDate "2006-01" }}
+                    <h3>{{ .Key }}</h3>
+                    <ul>
+                        {{ range .Pages }}
+                            <li class="list-item">
+                                <a href="{{ .Permalink }}" class="list-item-title">{{ .Title }}</a>
+                            </li>
+                        {{ end }}
+                    </ul>
+                {{ end }}
+            
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center">
+        <button class="back-button btn btn-default" role="button" onclick="window.history.go(-1)">back</button>
+    </div>
+
+    {{ partial "footer.html" }}
+
+    {{ partial "js.html" . }}
+    
+    {{ template "_internal/google_analytics.html" . }}
+
+</body>
+
+</html>

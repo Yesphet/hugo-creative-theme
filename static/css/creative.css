@@ -225,6 +225,10 @@ header .header-content .header-content-inner p {
         min-height: 100%;
     }
 
+    .semi-header {
+        min-height: 61.8%;
+    }
+
     header .header-content {
         position: absolute;
         top: 50%;
@@ -491,6 +495,6 @@ body {
 }
 
 .footerbox {
-    padding-top: 1em;
+    padding-top: 3em;
     padding-bottom: 2em;
 }

@@ -1,54 +1,43 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}" dir="ltr">
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
 
-  <div class="portfolio-modal modal fade">
-    <div class="modal-content">
-        <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-                <div class="rl">
-                </div>
-            </div>
-        </div>
-        <div class="container">
+    <head>
+
+        {{ partial "head.html" . }}
+
+        <link rel="stylesheet" href="{{ "css/post.css" | absURL }}" type="text/css">
+    </head>
+
+    <body>
+
+        {{ partial "nav.html" . }}
+
+        {{ partial "header.html" . }}
+
+        <section class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <div class="modal-body">
-                        {{ with .title }}
-                            <h2>{{ . }}</h2>
-                        {{ end }}
-                        {{ if and .title .description }}
-                            <hr class="star-primary">
-                        {{ end }}
-                        <img src="img/portfolio/{{ .img }}" class="img-responsive img-centered" alt="">
+                    <article class="post-body">
+
                         {{ with .Content }}
-                            <p>{{ . | markdownify }}</p>
+                            {{ . | markdownify }}
                         {{ end }}
-                        {{ if or .client .date .category }}
-                            <ul class="list-inline item-details">
-                                {{ if .client }}
-                                    <li>{{ with $.Site.Params.portfolio.modal.client }}{{.}}: {{ end }}
-                                        <strong><a href="{{ with .clientLink }}{{ . }}{{ else }}#{{ end }}">{{ .client }}</a></strong>
-                                    </li>
-                                {{ end }}
-                                {{ if .date }}
-                                    <li>{{ with $.Site.Params.portfolio.modal.date }}{{.}}: {{ end }}
-                                        <strong><a href="#">{{ .date }}</a></strong>
-                                    </li>
-                                {{ end }}
-                                {{ if .category }}
-                                    <li>{{ with $.Site.Params.portfolio.modal.category }}{{.}}: {{ end }}
-                                        <strong><a href="#">{{ .category }}</a></strong>
-                                    </li>
-                                {{ end }}
-                            </ul>
-                        {{ end }}
-                        {{ with $.Site.Params.portfolio.modal.buttonText }}
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>{{.}}</button>
-                        {{ end }}
-                    </div>
+
+                    </article>
                 </div>
             </div>
+        </section>
+
+        <div class="text-center">
+            <button class="back-button btn btn-default" role="button" onclick="window.history.go(-1)">back</button>
         </div>
-    </div>
-</div>
+
+        {{ partial "footer.html" }}
+
+        {{ partial "js.html" . }}
+        
+        {{ template "_internal/google_analytics.html" . }}
+
+    </body>
+
 </html>
