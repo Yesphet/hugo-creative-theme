@@ -3,10 +3,7 @@
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
 
     <head>
-
         {{ partial "head.html" . }}
-
-        <link rel="stylesheet" href="{{ "css/post.css" | absURL }}" type="text/css">
     </head>
 
     <body>
@@ -29,9 +26,7 @@
             </div>
         </section>
 
-        <div class="text-center">
-            <button class="back-button btn btn-default" role="button" onclick="window.history.go(-1)">back</button>
-        </div>
+        {{ partial "elements/backbutton.html" . }}
 
         {{ partial "footer.html" }}
 

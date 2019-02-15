@@ -4,7 +4,6 @@
 
     <head>
         {{ partial "head.html" . }}
-        <link rel="stylesheet" href="{{ "css/post.css" | absURL }}" type="text/css">
     </head>
 
     <body>
@@ -13,11 +12,9 @@
 
         {{ partial "header.html" . }}
 
-        {{ partial "list.html" . }}
+        {{ partial "elements/list.html" . }}
 
-        <div class="text-center">
-            <button class="back-button btn btn-default" role="button" onclick="window.history.go(-1)">back</button>
-        </div>
+        {{ partial "elements/backbutton.html" . }}
 
         {{ partial "footer.html" }}
 
