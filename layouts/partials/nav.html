@@ -28,7 +28,7 @@
                             <a class="page-scroll" href="#services">{{ .Site.Params.navigation.links.services }}</a>
                         </li>
                     {{ end }}
-                    {{ if and .Site.Data.projects .Site.Params.navigation.links.portfolio }}
+                    {{ if and .Site.Data.taxonomyMeta.categories .Site.Params.navigation.links.portfolio }}
                         <li>
                             <a class="page-scroll" href="#portfolio">{{ .Site.Params.navigation.links.portfolio }}</a>
                         </li>

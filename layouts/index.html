@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{{ "<!-- index.html -->" | safeHTML }}
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
     <head>
         {{ partial "head.html" . }}
@@ -19,7 +20,7 @@
             {{ partial "services.html" . }}
         {{ end }}
 
-        {{ if .Site.Data.projects }}
+        {{ if .Site.Data.taxonomyMeta.categories }}
             {{ partial "portfolio.html" . }}
         {{ end }}
 
@@ -35,7 +36,7 @@
             {{ partial "contact.html" . }}
         {{ end }}
 
-        {{ if .Site.Data.projects }}
+        {{ if .Site.Data.taxonomyMeta.categories }}
             {{ partial "modals.html" . }}
         {{ end }}
 

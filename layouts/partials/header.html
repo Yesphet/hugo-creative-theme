@@ -6,6 +6,13 @@
                 <h1>{{ . | markdownify  }}</h1>
             {{ end }}
             <hr>
+
+            {{ if .Description }}
+                <p>{{ .Description | markdownify }}</p>
+            {{ else if .Scratch.Get "description" }}
+                <p>{{ .Scratch.Get "description" | markdownify }}</p>
+            {{ end }}
+
             <div class="text-center">
                 <ul class="list-inline item-details">
                 {{ if .Params.date }}

@@ -1,5 +1,5 @@
 {{ "<!-- Portfolio Modals -->" | safeHTML }}
-{{ range .Site.Data.projects }}
+{{ range .Site.Data.taxonomyMeta.categories.terms }}
 <div class="portfolio-modal modal fade" id="portfolioModal{{ .modalID }}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -18,7 +18,16 @@
                         {{ if and .title .description }}
                             <hr class="star-primary">
                         {{ end }}
-                        <img src="img/portfolio/{{ .img }}" class="img-responsive img-centered" alt="">
+
+                        <a href="categories/{{ .title | lower }}" class="modal-img-box" >
+                            <img src="img/portfolio/{{ .img }}" class="img-responsive" alt="">
+                            <div class="modal-img-box-caption">
+                                <div class="button-name">
+                                    SHOW MORE
+                                </div>
+                            </div>
+                        </a>
+
                         {{ with .description }}
                             <p>{{ . | markdownify }}</p>
                         {{ end }}
@@ -41,8 +50,8 @@
                                 {{ end }}
                             </ul>
                         {{ end }}
-                        {{ with $.Site.Params.portfolio.modal.buttonText }}
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>{{.}}</button>
+                        {{ if $.Site.Params.portfolio.modal.buttonText }}
+                            <a href="categories/{{ .title | lower }}" class="btn btn-default">{{ $.Site.Params.portfolio.modal.buttonText }} <i class="fas fa-angle-double-right"></i></a>
                         {{ end }}
                     </div>
                 </div>

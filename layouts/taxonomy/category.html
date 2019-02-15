@@ -1,34 +1,24 @@
 <!DOCTYPE html>
-{{ "<!-- _default/single.html -->" | safeHTML }}
-<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+{{ "<!-- taxonomy/category.html taxonomy list template -->" | safeHTML }}
+<html lang="{{ .Site.LanguageCode }}" dir="ltr">
 
     <head>
 
         {{ partial "head.html" . }}
 
         <link rel="stylesheet" href="{{ "css/post.css" | absURL }}" type="text/css">
+
     </head>
 
     <body>
+
+        {{ .Scratch.Set "description" (index (index $.Site.Data.taxonomyMeta.categories.terms .Title) "description") }}
 
         {{ partial "nav.html" . }}
 
         {{ partial "header.html" . }}
 
-        <section class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <article class="post-body">
-
-                        {{ with .Content }}
-                            {{ . | markdownify }}
-                        {{ end }}
-
-                    </article>
-                </div>
-            </div>
-        </section>
-
+        {{ partial "list.html" . }}
         <div class="text-center">
             <button class="back-button btn btn-default" role="button" onclick="window.history.go(-1)">back</button>
         </div>
