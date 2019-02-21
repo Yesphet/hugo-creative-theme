@@ -12,10 +12,29 @@
 
         {{ partial "header.html" . }}
 
-        <section class="container">
+        <section class="container post-container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <article class="post-body">
+                    <ul class="text-center list-inline item-details post-prop"> 
+                        {{ if .Params.categories }}
+                        <li>Categories:
+                            {{ range .Params.categories }} 
+                                <strong class="post-prop-value"><a href="{{ $.Site.BaseURL }}categories/{{ . | lower }}">{{ . }}</a></strong>
+                            {{ end }}
+                        </li>
+                        {{ end }}
+
+                        {{ if .Params.tags }}
+                        <li>Tags:
+                            {{ range .Params.tags }} 
+                                <strong class="post-prop-value"><a href="#">{{ . }}</a></strong>
+                            {{ end }}
+                        </li>
+                        {{ end }}
+
+                       
+                    </ul>
+                    <article class="post-body markdown-body">
 
                         {{ with .Content }}
                             {{ . | markdownify }}
