@@ -4,6 +4,9 @@
 
     <head>
         {{ partial "head.html" . }}
+
+        <link rel="stylesheet" type="text/css" href="{{ "css/catalog.css" | absURL }}">
+
     </head>
 
     <body>
@@ -42,8 +45,18 @@
 
                     </article>
                 </div>
+                <!-- post中的侧边导航 -->
+                <div class="col-lg-2 col-lg-offset-0 visible-lg-block side-catalog-container">
+                    <div class="side-catalog">
+                        <ul class="catalog-body">
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
         </section>
+
+        
 
         {{ partial "elements/backbutton.html" . }}
 
@@ -54,5 +67,7 @@
         {{ template "_internal/google_analytics.html" . }}
 
     </body>
+
+    {{ partial "catelog-js.html" . }}
 
 </html>
